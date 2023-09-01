@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="shortcut icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="left">
+                <div class="logo-container"><img class="logo" src="https://i.ibb.co/r5krrdz/logo.png" alt=""></div>
+                <ul class="center">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">TV shows</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">New & Popular</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="search" id="search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="search-icon ltr-0 e1mhci4z1" data-name="MagnifyingGlass" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.6177 17.0319C14.078 18.2635 12.125 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 12.125 18.2635 14.078 17.0319 15.6177L22.7071 21.2929L21.2929 22.7071L15.6177 17.0319Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <!--Side Navbar  -->
+        <nav class="side-navbar" id="side-navbar">
+            <ul class="center">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">TV shows</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">New & Popular</a></li>
+            </ul>
+        </nav>
+    </nav>
+
+    <!-- Banner -->
+
+    <main class="banner-section" id="banner-section">
+        <!--
+             style="background-image: url('https://image.tmdb.org/t/p/original//lEMO9pVODhiWLgJzuCaYlfJkdNz.jpg');"
+            <div class="banner-content">
+            <h2 class="banner-title">Killer Book Club</h2>
+            <p class="banner-info">Trending Movie Realeaed "2023-08-25"</p>
+            <p class="banner-overview">Eight horror-loving friends fight for their lives when a killer clown who seems
+                to know the grim secret they
+                share begins to pick them off, one by one.</p>
+            <div class="button-container">
+                <button class="play">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="ltr-0 e1mhci4z1" data-name="Play" aria-hidden="true">
+                        <path
+                            d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                            fill="currentColor"></path>
+                    </svg>Play
+                </button>
+                <button class="more-info">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="ltr-0 e1mhci4z1" data-name="CircleI" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12ZM13 10V18H11V10H13ZM12 8.5C12.8284 8.5 13.5 7.82843 13.5 7C13.5 6.17157 12.8284 5.5 12 5.5C11.1716 5.5 10.5 6.17157 10.5 7C10.5 7.82843 11.1716 8.5 12 8.5Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    More Info
+                </button>
+            </div>
+        </div> -->
+        <!-- <div class="banner-feedBottom">fdg</div> -->
+    </main>
+
+    <main class="movie-container" id="movie-container">
+        <!-- <section class="movie-section">
+            <h2 class="movie-section-heading">Comedy</h2>
+            <div class="movie-row">
+                <img class="movie-item"
+                    src="https://occ-0-2186-2164.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABfX1GkY9vZVLGJFeu-rAQ7pZ35MTtPynN2_QldwA9M1gbH5bRDMcQpZpvf6yIz_oRszRg7W38Fvz70UEQpvsr837HlvIy2Z9Qx7qTgFH5B-9MvNA5pcvcUPCQWaX3QWA1irZKl0O6ql6ZXR27_TqcRu49_4iJHA9RWT6kQeDu9k6P0mpbivAZz9e8o407jLzw6EC_HoGAidoWL7ozkz63cR40O2Wmp8fUuh7kmLiWw_QX01eJPZQQI9loe7wMlb2EzN4PbKIiiq0Z3cIbU8zkYMhX7LxYQa-7kxQ07BHu2u5KkFMt8o7B5lmDBOFYlQN2bwwoH5hOSuUexujiqT2eBZn-fD86pa5BYWV_QSU7wTtbg.jpg?r=ae8"
+                    alt="">
+            </div>
+        </section> -->
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
