@@ -25,6 +25,46 @@ a {
   color: inherit;
 }
 
+/* Loading */
+
+.loading-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(#050505ad, #050505ad);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.loading-inner {
+  width: 180px;
+  height: 180px;
+  background-color: #0f0f0f;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  /* display: none; */
+}
+
+.loading {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 6px solid #7a7a7a;
+  border-top: 6px solid #ffffff;
+  animation: loading 3s ease infinite;
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Navbar */
 
 .navbar {
@@ -40,9 +80,9 @@ a {
   color: white;
   text-align: center;
   font-size: 60px;
-  margin: 20px 0;
   font-weight: 600;
-  background: -webkit-linear-gradient(#ff0000, #362a2a);
+  margin-bottom: 20px;
+  background: -webkit-linear-gradient(#fc0317, #362a2a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: welcome 1s linear;
@@ -114,6 +154,14 @@ form button:hover {
 
 .login-content a:hover {
   border-bottom: 1px solid white;
+}
+
+/* Validation */
+
+.validation {
+  /* display: none; */
+  color: red;
+  position: absolute;
 }
 
 /* Footer */

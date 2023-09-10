@@ -2,50 +2,98 @@ const apiKey = "2d226abf329b9bdd81cb132489e6a1a6";
 const url = "https://api.themoviedb.org/3";
 const imgUrl = "https://image.tmdb.org/t/p/original";
 
-// ${url}/trending/all/week?api_key=${apikey}&language=en-US
-
 const apiPath = {
-  fetchAllCategories: `${url}/genre/tv/list?api_key=${apiKey}`,
+  fetchAllCategories: [
+    {
+      name: "Now Playing",
+      categori: "now_playing",
+    },
+    {
+      name: "Popular",
+      categori: "popular",
+    },
+    {
+      name: "Top Rated",
+      categori: "top_rated",
+    },
+    {
+      name: "Upcoming",
+      categori: "upcoming",
+    },
+  ],
 
-  fectchMovieList: (id) =>
-    `${url}/discover/movie?api_key=${apiKey}&with_genres=${id}`,
+  fectchList: (id) => `${url}/movie/${id}?api_key=${apiKey}`,
 
-  fetchTrendingMovies: `${url}/trending/movie/week?api_key=${apiKey}`,
+  fetchTrending: `${url}/trending/tv/week?api_key=${apiKey}`,
 };
 
 function init() {
-  fetchTrendingMovies();
+  loading();
+  fetchTrending();
   fethAndBuildAllSection();
 }
 
-async function fetchTrendingMovies() {
-  try {
-    const res = await fetch(apiPath.fetchTrendingMovies);
-    // console.log(res);
-    const data = await res.json();
-    // console.log(data);
-    const randomIndex = Math.floor(Math.random() * data.results.length);
-    // console.log(randomIndex);
-    const randomMovie = data.results[randomIndex];
-    bulidBannerSection(randomMovie);
-  } catch (err) {
-    console.log(err);
-  }
+// loading
+function loading() {
+  const random = Math.floor(Math.random() * (3 - 2) + 2);
+  // console.log(random);
+  setTimeout(() => {
+    const loadingEl = document.getElementById("loading-container");
+    loadingEl.style.display = "none";
+    document.body.style.overflow = "auto";
+  }, random * 1000);
+}
+
+async function fetchTrending() {
+  const generateNum = (count, max) => {
+    const arr = [];
+    while (arr.length < count) {
+      const r = Math.floor(Math.random() * max);
+      if (arr.indexOf(r) === -1) {
+        arr.push(r);
+      }
+    }
+    return arr;
+  };
+  const arr = generateNum(5, 20);
+  const res = await fetch(apiPath.fetchTrending);
+  // console.log(res);
+  const data = await res.json();
+  // console.log(data);
+  arr.forEach((d, index) => {
+    try {
+      const randomIndex = d;
+      // console.log(randomIndex);
+      const randomTv = data.results[randomIndex];
+      bulidBannerSection(randomTv, index);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 }
 
 // Build Banner Section
 
-function bulidBannerSection(movie) {
+function bulidBannerSection(tv, index) {
+  const carousel_inner = document.getElementById("carousel-inner");
+  carousel_inner;
   const bannerSectionEl = document.getElementById("banner-section");
-  bannerSectionEl.style.backgroundImage = `url(
-    '${imgUrl}${movie.backdrop_path}'
-  )`;
-  bannerSectionEl.style.color = "red";
+  // bannerSectionEl.style.backgroundImage = `url(
+  //   '${imgUrl}${tv.backdrop_path}'
+  // )`;
+  // bannerSectionEl.style.color = "red";
   const bannerContent = `
+  <main class="banner-section carousel-item ${
+    index === 0 ? "active" : ""
+  }" id="banner-section" style="background-image:url(${imgUrl}${
+    tv.backdrop_path
+  })">
     <div class="banner-content">
-        <h2 class="banner-title">${movie.original_title}</h2>
-        <p class="banner-info">Trending Movie Realeaed "${movie.release_date}"</p>
-        <p class="banner-overview">${movie.overview}</p>
+        <h2 class="banner-title">${tv.name}</h2>
+        <p class="banner-info">Trending Series Realeaed "${
+          tv.first_air_date
+        }"</p>
+        <p class="banner-overview">${tv.overview}</p>
         <div class="button-container">
             <button class="play">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -66,48 +114,39 @@ function bulidBannerSection(movie) {
             </button>
     </div>
     </div>
-    <div class="banner-feedBottom"></div>`;
-  bannerSectionEl.innerHTML = bannerContent;
+    <div class="banner-feedBottom"></div>
+    </main>`;
+  carousel_inner.innerHTML += bannerContent;
 }
 
-async function fethAndBuildAllSection() {
-  try {
-    const res = await fetch(apiPath.fetchAllCategories);
-    const data = await res.json();
-    const categories = data.genres;
-    if (Array.isArray(categories) && categories.length > 0) {
-      categories.forEach((cat) => {
-        fetchAdndBuildMovieSection(cat.id, cat.name);
-      });
-    }
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
+function fethAndBuildAllSection() {
+  apiPath.fetchAllCategories.map((c) => {
+    fetchAdndBuildSection(c.categori, c.name);
+  });
 }
 
-async function fetchAdndBuildMovieSection(id, name) {
+async function fetchAdndBuildSection(id, name) {
   try {
-    const res = await fetch(apiPath.fectchMovieList(id));
+    const res = await fetch(apiPath.fectchList(id));
     const data = await res.json();
-    const movies = data.results;
-    console.log(movies);
-    if (Array.isArray(movies) && movies.length > 0) {
-      buildMovieSection(movies, name);
+    const movie = data.results;
+    // console.log(movie);
+    if (Array.isArray(movie) && movie.length > 0) {
+      buildSection(movie, name);
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-function buildMovieSection(movies, categoriName) {
+function buildSection(movie, categoriName) {
   const movieContainerEl = document.getElementById("movie-container");
   const movieSectionHTML = `
             <h2 class="movie-section-heading">${categoriName}</h2>
             <div class="movie-row">
-               ${movies.map(
+               ${movie.map(
                  (d) => `<img class="movie-item"
-               src="${imgUrl}/${d.backdrop_path}"
+               src="${imgUrl}/${d.poster_path}"
                alt="">`
                )}
             </div>
